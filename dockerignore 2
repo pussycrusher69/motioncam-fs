@@ -1,0 +1,13 @@
+node_modules
+npm-debug.log
+.git
+.gitignore
+*.md
+!README.md
+uploads/*
+output/*
+proxies/*
+.DS_Store
+*.log
+.env.local
+.env.*.local
