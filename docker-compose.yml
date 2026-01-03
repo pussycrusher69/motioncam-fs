@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  mcraw-converter:
+    build: .
+    container_name: mcraw-converter
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./uploads:/app/uploads
+      - ./output:/app/output
+      - ./temp:/app/temp
+    environment:
+      - NODE_ENV=production
+      - DECODER_PATH=/usr/local/bin/motioncam-decoder
+      - BLOB_READ_WRITE_TOKEN=${BLOB_READ_WRITE_TOKEN}
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
